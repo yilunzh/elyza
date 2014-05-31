@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Domain.create(name: "google.com")
+Domain.create(name: "dropbox.com")
+
+EmailFormat.create(format: "(fn).(ln)")
+EmailFormat.create(format: "(fn)_(ln)")
+EmailFormat.create(format: "(fnfl)(ln)")
+EmailFormat.create(format: "(fn)")
+
