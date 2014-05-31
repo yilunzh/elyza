@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -14,12 +15,13 @@ group :test do
 end
 
 group :production do
-	gem 'pg'
 	gem 'rails_12factor'
 end
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+#gem 'mysql2'
+
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
