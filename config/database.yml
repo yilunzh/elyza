@@ -17,6 +17,14 @@ default: &default
   password:
   host: localhost
 
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   pool: 5
+#   username: root
+#   password:
+#   host: localhost
+
 development:
   <<: *default
   database: linqly_development
