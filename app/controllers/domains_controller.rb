@@ -1,6 +1,9 @@
+require 'pry'
+
 class DomainsController < ApplicationController
 	def index
 		if params[:search]
+			#binding.pry
 			@domains = Domain.search(params[:search])
 		else
 			@domains = Domain.all
