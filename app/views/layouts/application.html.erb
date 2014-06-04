@@ -7,8 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+	<nav class="navbar navbar-inverse", role="navigation">
+		<div class="navbar-inner">
+			<div class="container">
+				<%= link_to "LinQ.ly", root_path, id: "logo" %>
+				<ul class = "nav navbar-nav navbar-right">
+					<li><%= link_to "Search", new_search_path %></li>
+					<li><%= link_to "Domains", domains_path %></li>
+					<li><%= link_to "Email Formats", email_formats_path %></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<%= yield %>
 </body>
 </html>

@@ -1,11 +1,11 @@
 <h1>Search Result</h1>
 
-<p><%= @search.first_name %> <%= @search.last_name %></p>
+<h3>Search Parameters</h3>
+<p><%= @search.first_name %>, <%= @search.last_name %>, <%= @domain.name %></p>
 
-<p><%= @domain.name %></p>
-
+<h3>Search Results</h3>
 <ul>
-<% @domain.email_formats.each do |email_format| %>
-	<li><%= email_format.format %></li>
+<% @emails.each do |email| %>
+	<li><%= email %></li>
 <% end %>
 </ul>
