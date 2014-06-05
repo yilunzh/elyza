@@ -1,11 +1,43 @@
 <h1>Search Result</h1>
 
-<h3>Search Parameters</h3>
-<p><%= @search.first_name %>, <%= @search.last_name %>, <%= @domain.name %></p>
+<div class="row">
+	<div class="col-md-2">
+		<div class="search_form">
+			<%= form_for @new_search do |f| %>
+				<div class="form-group">
+					<%= f.label :first_name %>
+					<%= f.text_field :first_name, class: "form-control" %>
+				</div>
+				<div class="form-group">
+					<%= f.label :last_name %>
+					<%= f.text_field :last_name, class: "form-control" %>
+				</div>
+				<div class="form-group">
+					<%= f.label :domain_name %>
+					<%= f.text_field :domain_name, class: "form-control" %>
+				</div>
+				<div class="submit">
+					<%= f.submit "Search", class: "btn btn-primary" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class="col-md-4 col-md-offset-2">
+		<h3>Confirmed Formats</h3>
+		<ul class="list-group">
+			<% if @emails["confirmed"].any? %>
+				<% @emails["confirmed"].each do |email| %>
+					<li class="list-group-item"><%= email %></li>
+				<% end %>
+			<% else %>
+				<p>No email format found</p>
+			<% end %>
+		<h3>Unconfirmed Formats</h3>
+			<% @emails["unconfirmed"].each do |email| %>
+				<li class="list-group-item"><%= email %></li>
+			<% end %>
 
-<h3>Search Results</h3>
-<ul>
-<% @emails.each do |email| %>
-	<li><%= email %></li>
-<% end %>
-</ul>
+		</ul>
+	</div>
+
+</div>
