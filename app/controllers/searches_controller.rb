@@ -18,7 +18,17 @@ class SearchesController < ApplicationController
 	def create
 		@search = Search.new(search_params)
 		if @search.save
-			redirect_to search_path(@search)
+			if Domain.find_by_name(search_params[:domain_name]) 
+				redirect_to search_path(@search)
+			else
+				@domain = Domain.new(name: search_params[:domain_name])
+				associate_email_formats_with_domain(@domain)
+				if @domain.save
+					redirect_to search_path(@search)
+				else
+					render "new"
+				end
+			end
 		else
 			render "new"
 		end
@@ -37,27 +47,13 @@ class SearchesController < ApplicationController
 		end
 
 		def display_emails(search, domain)
-			confirmed_emails = []
-			unconfirmed_emails = []
 
-			EmailFormat.all.each do |unconfirmed_email_format|
-				
-				if domain.email_formats.any?
-					domain.email_formats.each do |confirmed_email_format|
-						if confirmed_email_format.format == unconfirmed_email_format.format
-							confirmed_emails.append(convert_email_format(confirmed_email_format))
-						else
-							unconfirmed_emails.append(convert_email_format(unconfirmed_email_format))
-						end
-					end
-				else
-					unconfirmed_emails.append(convert_email_format(unconfirmed_email_format))
-				end
-				
+			emails = []
+			domain.email_formats.each do |email_format|
+				emails.append(convert_email_format(email_format))
 			end
 
-			return emails = { "confirmed" => confirmed_emails,
-			 		  		  "unconfirmed" => unconfirmed_emails }
+			return emails
 
 		end
 
