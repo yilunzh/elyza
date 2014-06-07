@@ -21,7 +21,6 @@ class SearchesController < ApplicationController
 			if Domain.find_by_name(search_params[:domain_name])
 				redirect_to search_path(@search)
 			else
-				binding.pry
 				@domain = Domain.new(name: search_params[:domain_name])
 				associate_email_formats_with_domain(@domain)
 				if @domain.save
@@ -40,8 +39,8 @@ class SearchesController < ApplicationController
 			params.require(:search).permit(:first_name, :last_name, :domain_name)
 		end
 
-		def convert_email_format(email_format)
-			email = email_format.format + "@" + @search.domain_name
+		def convert_email_format(format)
+			email = format + "@" + @search.domain_name
 			email = email.gsub("(fn)", @search.first_name.downcase)
 			email = email.gsub("(fnfl)", @search.first_name[0].downcase)
 			email = email.gsub("(ln)", @search.last_name.downcase)
@@ -49,9 +48,10 @@ class SearchesController < ApplicationController
 
 		def display_emails(search, domain)
 
-			emails = []
+			emails = {}
 			domain.email_formats.each do |email_format|
-				emails.append(convert_email_format(email_format))
+				format = email_format.format
+				emails[format] = convert_email_format(format)
 			end
 
 			return emails

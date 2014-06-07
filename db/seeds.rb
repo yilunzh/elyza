@@ -5,21 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first
+ require 'pry'
+
  def associate_email_formats_with_domain(domain)
  	EmailFormat.all.each do |format|
-		domain.email_formats << format
+ 		domain.email_formats << format
+ 		domain.configurations.each do |config|
+			config.score = 0
+		end
+		
 	end
 end
-
-Domain.create(name: "google.com")
-Domain.create(name: "dropbox.com")
 
 EmailFormat.create(format: "(fn).(ln)")
 EmailFormat.create(format: "(fn)_(ln)")
 EmailFormat.create(format: "(fnfl)(ln)")
 EmailFormat.create(format: "(fn)")
-
-Domain.all.each do |domain|
-	associate_email_formats_with_domain(domain)
-end
-

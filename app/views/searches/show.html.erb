@@ -25,9 +25,10 @@
 	<div class="col-md-4 col-md-offset-2">
 		<ul class="list-group">
 			<% if @emails.any? %>
-				<% @emails.each do |email| %>
+				<% @emails.each do |format, value| %>
 					<li class="list-group-item">
-						<%= email %>
+						<%= value %>
+						<%= Configuration.with_domain_id_and_email_format_id(@domain.id, @domain.email_formats.find_by_format(format).id).first.score %>
 						<span class="glyphicon glyphicon-thumbs-down"></span>
 						<span class="glyphicon glyphicon-thumbs-up"></span>
 					</li>
