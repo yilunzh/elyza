@@ -11,20 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531213143) do
+ActiveRecord::Schema.define(version: 20140607184802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "domains", force: true do |t|
-    t.string   "name"
+  create_table "configurations", force: true do |t|
+    t.integer  "score"
+    t.integer  "domain_id"
+    t.integer  "email_format_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "domains_email_formats", force: true do |t|
-    t.integer  "domain_id"
-    t.integer  "email_format_id"
+  create_table "domains", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

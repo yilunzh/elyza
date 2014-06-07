@@ -1,5 +1,6 @@
 class Domain < ActiveRecord::Base
-	has_and_belongs_to_many :email_formats
+	has_many :configurations
+	has_many :email_formats, through: :configurations
 
 	def self.search(search)
 		where('name LIKE ?', "%#{search}%")

@@ -18,9 +18,10 @@ class SearchesController < ApplicationController
 	def create
 		@search = Search.new(search_params)
 		if @search.save
-			if Domain.find_by_name(search_params[:domain_name]) 
+			if Domain.find_by_name(search_params[:domain_name])
 				redirect_to search_path(@search)
 			else
+				binding.pry
 				@domain = Domain.new(name: search_params[:domain_name])
 				associate_email_formats_with_domain(@domain)
 				if @domain.save
