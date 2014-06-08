@@ -23,20 +23,26 @@
 		</div>
 	</div>
 	<div class="col-md-4 col-md-offset-2">
-		<ul class="list-group">
+		<table>
 			<% if @emails.any? %>
 				<% @emails.each do |format, value| %>
-					<li class="list-group-item">
-						<%= value %>
-						<%= Configuration.with_domain_id_and_email_format_id(@domain.id, @domain.email_formats.find_by_format(format).id).first.score %>
-						<span class="glyphicon glyphicon-thumbs-down"></span>
-						<span class="glyphicon glyphicon-thumbs-up"></span>
-					</li>
-				<% end %>
+					<tr>
+						<td class="value">
+							<div ><h4><%= value %></h4></div>
+						</td>
+						<td>
+							<div class="vote">
+								<span class="glyphicon glyphicon-chevron-up"></span>
+								<span id="score"><%= Configuration.with_domain_id_and_email_format_id(@domain.id, @domain.email_formats.find_by_format(format).id).first.score %></span>
+								<span class="glyphicon glyphicon-chevron-down"></span>
+							</div>
+						</td>
+					</tr>
+					<% end %>
 			<% else %>
 				<p>No email format found</p>
 			<% end %>
-		</ul>
+		</table>
 	</div>
 
 </div>
