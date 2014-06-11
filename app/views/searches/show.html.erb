@@ -22,7 +22,7 @@
 			<% end %>
 		</div>
 	</div>
-	<div class="col-md-4 col-md-offset-2">
+	<div class="col-md-5 col-md-offset-1">
 		<table>
 			<% if @emails.any? %>
 				<% @emails.each do |format, email| %>
@@ -30,18 +30,21 @@
 						<td class="email">
 							<div ><h4><%= email[0] %></h4></div>
 						</td>
-		<!-- 				<td>
+		 				<td>
 							<div class="vote">
 								<span class="glyphicon glyphicon-chevron-up"></span>
 								<span id="score"><%= Configuration.with_domain_id_and_email_format_id(@domain.id, @domain.email_formats.find_by_format(format).id).first.score %></span>
 								<span class="glyphicon glyphicon-chevron-down"></span>
 							</div>
-						</td> -->
+						</td> 
 						<td class="confirmation">
-							<% if email[1]/100 == 2 %>
-								<span class="glyphicon glyphicon-ok"></span>
+							<% case email[1] %>
+							<% when 200 %>
+								<span class="glyphicon glyphicon-ok-sign"></span>
+							<% when 207 %>
+								<span class="glyphicon glyphicon-question-sign"></span>
 							<% else %>
-								<span class="glyphicon glyphicon-remove"></span>
+								<span class="glyphicon glyphicon-remove-sign"></span>
 							<% end %>
 
 						</td>

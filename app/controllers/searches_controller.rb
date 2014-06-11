@@ -58,7 +58,6 @@ class SearchesController < ApplicationController
 				format = email_format.format
 				email =  convert_email_format(format)
 				emails[format] = [email, confirm_email(email)]
-				#binding.pry
 			end
 
 			return emails

@@ -36,14 +36,19 @@ table, th, td {
     border-bottom: solid LightGray 1px;
 }
 
-.glyphicon-ok {
+.glyphicon-ok-sign {
 	color: green;
-	font-size: 1.2em;
+	font-size: 1.8em;
 }
 
-.glyphicon-remove {
+.glyphicon-remove-sign {
 	color: red;
-	font-size: 1.2em;
+	font-size: 1.8em;
+}
+
+.glyphicon-question-sign {
+	color: orange;
+	font-size: 1.8em;
 }
 
 td {
