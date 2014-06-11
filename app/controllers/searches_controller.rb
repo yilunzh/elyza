@@ -1,4 +1,6 @@
 require 'pry'
+require 'rest_client'
+require 'json'
 
 class SearchesController < ApplicationController
 	def new
@@ -13,6 +15,8 @@ class SearchesController < ApplicationController
 									  domain_name: @search.domain_name)
 		@domain = Domain.find_by_name(@search.domain_name)
 		@emails = display_emails(@search, @domain)
+
+
 	end
 
 	def create
@@ -32,6 +36,7 @@ class SearchesController < ApplicationController
 		else
 			render "new"
 		end
+
 	end
 
 	private
@@ -51,11 +56,19 @@ class SearchesController < ApplicationController
 			emails = {}
 			domain.email_formats.each do |email_format|
 				format = email_format.format
-				emails[format] = convert_email_format(format)
+				email =  convert_email_format(format)
+				emails[format] = [email, confirm_email(email)]
+				#binding.pry
 			end
 
 			return emails
 
+		end
+
+		def confirm_email(email)
+			response = RestClient.get "http://www.email-validator.net/api/verify?EmailAddress=#{email}&APIKey=ev-ceba647090c72c15f0c2d608b22ff943" 
+			response = JSON.parse response
+			return response["status"]
 		end
 
 
