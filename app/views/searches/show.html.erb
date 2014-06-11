@@ -30,13 +30,13 @@
 						<td class="email">
 							<div ><h4><%= email[0] %></h4></div>
 						</td>
-		 				<td>
+<!-- 		 				<td>
 							<div class="vote">
 								<span class="glyphicon glyphicon-chevron-up"></span>
 								<span id="score"><%= Configuration.with_domain_id_and_email_format_id(@domain.id, @domain.email_formats.find_by_format(format).id).first.score %></span>
 								<span class="glyphicon glyphicon-chevron-down"></span>
 							</div>
-						</td> 
+						</td>  -->
 						<td class="confirmation">
 							<% case email[1] %>
 							<% when 200 %>
