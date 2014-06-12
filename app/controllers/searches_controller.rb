@@ -45,7 +45,10 @@ class SearchesController < ApplicationController
 		end
 
 		def convert_email_format(format)
-			email = format + "@" + @search.domain_name
+			if @search.domain_name.include?("www.")
+				@search.domain_name.slice!("www.")
+			end
+			email = format + "@" + @search.domain_name.downcase
 			email = email.gsub("(fn)", @search.first_name.downcase)
 			email = email.gsub("(fnfl)", @search.first_name[0].downcase)
 			email = email.gsub("(ln)", @search.last_name.downcase)
