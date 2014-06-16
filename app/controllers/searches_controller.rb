@@ -16,7 +16,6 @@ class SearchesController < ApplicationController
 		@domain = Domain.find_by_name(@search.domain_name)
 		@emails = display_emails(@search, @domain)
 
-
 	end
 
 	def create
@@ -61,6 +60,7 @@ class SearchesController < ApplicationController
 				format = email_format.format
 				email =  convert_email_format(format)
 				emails[format] = [email, confirm_email(email)]
+				#emails[format] = [email, 114]
 			end
 
 			return emails
