@@ -9,7 +9,6 @@ class EmailFormatsController < ApplicationController
 
 	def create
 		@email_format = EmailFormat.new(email_format_params)
-		associate_domains_with_email_format(@email_format)
 		if @email_format.save
 			redirect_to email_formats_path
 		else

@@ -30,13 +30,6 @@
 						<td class="email">
 							<div ><h4><%= email[0] %></h4></div>
 						</td>
-<!-- 		 				<td>
-							<div class="vote">
-								<span class="glyphicon glyphicon-chevron-up"></span>
-								<span id="score"><%= Configuration.with_domain_id_and_email_format_id(@domain.id, @domain.email_formats.find_by_format(format).id).first.score %></span>
-								<span class="glyphicon glyphicon-chevron-down"></span>
-							</div>
-						</td>  -->
 						<td class="confirmation">
 							<% if email[1]/100 == 1 %>
 								<span class="glyphicon glyphicon-exclamation-sign"></span>

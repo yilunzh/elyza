@@ -15,7 +15,6 @@ class DomainsController < ApplicationController
 
 	def create
 		@domain = Domain.new(domain_params)
-		associate_email_formats_with_domain(@domain)
 
 		if @domain.save
 			redirect_to domains_path
