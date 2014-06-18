@@ -37,8 +37,7 @@ ActiveRecord::Schema.define(version: 20140607184802) do
   end
 
   create_table "searches", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "full_name"
     t.string   "domain_name"
     t.datetime "created_at"
     t.datetime "updated_at"

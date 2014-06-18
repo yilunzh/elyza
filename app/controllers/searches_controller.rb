@@ -10,8 +10,7 @@ class SearchesController < ApplicationController
 	def show
 		@search = Search.find(params[:id])
 		@new_search = Search.new
-		@new_search.assign_attributes(first_name: @search.first_name, 
-									  last_name: @search.last_name, 
+		@new_search.assign_attributes(full_name: @search.full_name, 
 									  domain_name: @search.domain_name)
 		@domain = Domain.find_by_name(@search.domain_name)
 		@emails = display_emails(@search)
@@ -39,17 +38,21 @@ class SearchesController < ApplicationController
 
 	private
 		def search_params
-			params.require(:search).permit(:first_name, :last_name, :domain_name)
+			params.require(:search).permit(:full_name, :domain_name)
 		end
 
 		def convert_email_format(format)
 			if @search.domain_name.include?("www.")
 				@search.domain_name.slice!("www.")
 			end
+
+			name_array = @search.full_name.split(" ")
+			last_name = name_array.pop()
+			first_name = name_array.pop()
 			email = format + "@" + @search.domain_name.downcase
-			email = email.gsub("(fn)", @search.first_name.downcase)
-			email = email.gsub("(fnfl)", @search.first_name[0].downcase)
-			email = email.gsub("(ln)", @search.last_name.downcase)
+			email = email.gsub("(fn)", first_name.downcase)
+			email = email.gsub("(fnfl)", first_name[0].downcase)
+			email = email.gsub("(ln)", last_name.downcase)
 		end
 
 		def display_emails(search)
@@ -61,7 +64,6 @@ class SearchesController < ApplicationController
 				emails[format] = [email, confirm_email(email)]
 				#emails[format] = [email, 114]
 			end
-			binding.pry
 
 			return emails
 
