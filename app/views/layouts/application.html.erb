@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ELYZA</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<nav class="navbar navbar-default", role="navigation">
-		<div class="navbar-inner">
-			<div class="container">
-				<%= link_to "ELYZA", root_path, id: "logo" %>
-				<ul class = "nav navbar-nav navbar-right">
-				</ul>
+	<head>
+	  <title>ELYZA</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-default", role="navigation">
+			<div class="navbar-inner">
+				<div class="container">
+					<%= link_to "ELYZA", root_path, id: "logo" %>
+					<ul class = "nav navbar-nav navbar-right">
+						<% if user_signed_in? %>
+						  	Logged in as <strong><%= current_user.email %></strong>.
+						  	<li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+						  	<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+						<% else %>
+						  	<li><%= link_to "Sign up", new_user_registration_path %></li>
+						  	<li><%= link_to "Sign in", new_user_session_path %></li>
+						<% end %>
+					</ul>
+				</div>
 			</div>
-		</div>
-	</nav>
-	<%= yield %>
-</body>
+		</nav>
+		<% if notice %>
+			<p class="alert alert-success"><%= notice %></p>
+		<% end %>
+		<% if alert %>
+			<p class="alert alert-danger"><%= alert %></p>
+		<% end %>
+
+		<%= yield %>
+	</body>
 </html>

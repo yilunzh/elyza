@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   root 'searches#new'
 
+  devise_for :users
+  
+
   resources :domains
   resources :email_formats
   resources :searches

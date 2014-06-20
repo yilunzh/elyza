@@ -6,6 +6,7 @@ gem 'rails', '4.1.1'
 gem 'bootstrap-sass'
 
 gem 'pry'
+gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails'
