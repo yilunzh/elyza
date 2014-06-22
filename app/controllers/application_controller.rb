@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
   	# For APIs, you may want to use :null_session instead.
   	protect_from_forgery with: :exception
 
+  	def require_admin
+		unless current_user.admin?
+			flash[:alert] = "You must be an admin to access this section."
+			redirect_to root_path
+		end
+	end
+
  # Obsolete
  #  	def associate_email_formats_with_domain(domain)
  #  		EmailFormat.all.each do |format|

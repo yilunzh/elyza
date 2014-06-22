@@ -1,6 +1,7 @@
 class EmailFormatsController < ApplicationController
 	before_filter :authenticate_user!
-	
+	before_filter :require_admin
+
 	def index
 		@email_formats = EmailFormat.all
 	end
@@ -42,6 +43,13 @@ class EmailFormatsController < ApplicationController
 	private
 		def email_format_params
 			params.require(:email_format).permit(:format)
+		end
+
+		def require_admin
+			unless current_user.admin?
+				flash[:alert] = "You must be an admin to access this section"
+				redirect_to root_path
+			end
 		end
 
 end

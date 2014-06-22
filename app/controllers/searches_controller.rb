@@ -5,18 +5,23 @@ require 'json'
 class SearchesController < ApplicationController
 
 	before_filter :authenticate_user!, except: [:new]
-	
+
 	def new
 		@search = Search.new
 	end
 
 	def show
 		@search = Search.find(params[:id])
-		@new_search = Search.new
-		@new_search.assign_attributes(full_name: @search.full_name, 
-									  domain_name: @search.domain_name)
-		@domain = Domain.find_by_name(@search.domain_name)
-		@emails = display_emails(@search)
+		if @search.user == current_user
+			@new_search = Search.new
+			@new_search.assign_attributes(full_name: @search.full_name, 
+										  domain_name: @search.domain_name)
+			@domain = Domain.find_by_name(@search.domain_name)
+			@emails = display_emails(@search)
+		else
+			redirect_to root_path, alert: "You can only see your own search results"
+
+		end
 
 	end
 
@@ -38,9 +43,8 @@ class SearchesController < ApplicationController
 			else
 				render "new"
 			end
-			binding.pry
 		else
-			redirect_to new_user_session_path, notice: "You are not logged in."
+			redirect_to new_user_session_path, alert: "You are not logged in."
 		end
 
 	end
