@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140620005131) do
   create_table "searches", force: true do |t|
     t.string   "full_name"
     t.string   "domain_name"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

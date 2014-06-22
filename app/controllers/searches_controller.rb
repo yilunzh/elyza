@@ -5,6 +5,7 @@ require 'json'
 class SearchesController < ApplicationController
 
 	before_filter :authenticate_user!, except: [:new]
+	
 	def new
 		@search = Search.new
 	end
@@ -21,26 +22,32 @@ class SearchesController < ApplicationController
 
 	def create
 		@search = Search.new(search_params)
-		if @search.save
-			if Domain.find_by_name(search_params[:domain_name])
-				redirect_to search_path(@search)
-			else
-				@domain = Domain.new(name: search_params[:domain_name])
-				if @domain.save
+		if current_user
+			@search.user = current_user
+			if @search.save
+				if Domain.find_by_name(search_params[:domain_name])
 					redirect_to search_path(@search)
 				else
-					render "new"
+					@domain = Domain.new(name: search_params[:domain_name])
+					if @domain.save
+						redirect_to search_path(@search)
+					else
+						render "new"
+					end
 				end
+			else
+				render "new"
 			end
+			binding.pry
 		else
-			render "new"
+			redirect_to new_user_session_path, notice: "You are not logged in."
 		end
 
 	end
 
 	private
 		def search_params
-			params.require(:search).permit(:full_name, :domain_name)
+			params.require(:search).permit(:full_name, :domain_name, :user)
 		end
 
 		def convert_email_format(format)

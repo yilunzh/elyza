@@ -4,6 +4,7 @@ class CreateSearches < ActiveRecord::Migration
       t.string :full_name
       t.string :domain_name
 
+      t.belongs_to :user
       t.timestamps
     end
   end
