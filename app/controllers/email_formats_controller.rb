@@ -1,4 +1,6 @@
 class EmailFormatsController < ApplicationController
+	before_filter :authenticate_user!
+	
 	def index
 		@email_formats = EmailFormat.all
 	end

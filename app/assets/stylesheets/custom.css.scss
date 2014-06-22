@@ -1,18 +1,22 @@
 @import "bootstrap";
 
 /* General */
-h1 {
+h1, h2 {
 	text-align: center;
 	padding-top: 30px;
 	padding-bottom:50px;
 }
+
+h2 {
+	padding-top: 20px;
+	padding-bottom: 20px;
+} 
 
 #logo {
 	float: left;
 	font-size: 1.7em;
 	padding-top: 9px;
 	&:hover {
-		color: white; 
 		text-decoration: none;
 	}
 }

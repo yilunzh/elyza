@@ -1,6 +1,6 @@
-require 'pry'
-
 class DomainsController < ApplicationController
+	before_filter :authenticate_user!
+
 	def index
 		if params[:search]
 			@domains = Domain.search(params[:search])

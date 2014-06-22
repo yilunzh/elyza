@@ -3,6 +3,8 @@ require 'rest_client'
 require 'json'
 
 class SearchesController < ApplicationController
+
+	before_filter :authenticate_user!, except: [:new]
 	def new
 		@search = Search.new
 	end
