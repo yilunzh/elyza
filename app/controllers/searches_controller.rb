@@ -83,7 +83,7 @@ class SearchesController < ApplicationController
 		end
 
 		def confirm_email(email)
-			response = RestClient.get "http://www.email-validator.net/api/verify?EmailAddress=#{email}&APIKey=ev-ceba647090c72c15f0c2d608b22ff943" 
+			response = RestClient.get "http://www.email-validator.net/api/verify?EmailAddress=#{email}&APIKey=#{ENV["EMAIL_VALIDATOR_API_KEY"]}" 
 			response = JSON.parse response
 			return response["status"]
 		end
