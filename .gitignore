@@ -15,6 +15,9 @@
 /log/*.log
 /tmp
 
+#ignore local_env file
+/config/lcoal_env.yml
+
 # Ignore other unneeded files.
 database.yml
 doc/
