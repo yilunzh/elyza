@@ -7,5 +7,5 @@
 # GMAIL_USERNAME: 'Your_Gmail_Username'
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
 
-GMAIL_USERNAME: 'yilunzh@gmail.com'
-GMAIL_PASSWORD: 'UT87511649'
+GMAIL_USERNAME: 'info@elyza.co'
+GMAIL_PASSWORD: 'elyza2014'
