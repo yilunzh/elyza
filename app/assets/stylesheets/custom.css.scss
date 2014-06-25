@@ -101,5 +101,28 @@ td {
 	text-align: center;
 }
 
+/*About Page*/
+.circular {
+	width: 150px;
+	height: 150px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	background-image: image-url("head_shot.jpg");
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.hello {
+	text-align: center;
+}
+
+h1, .hello {
+	padding-bottom: 15px;
+}
+
+#about {
+	padding-bottom: 100px;
+}
 
 
