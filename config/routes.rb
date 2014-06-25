@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'searches#new'
 
+  match '/about', to: 'static_pages#about', via: 'get'
+
   devise_for :users
   
 
