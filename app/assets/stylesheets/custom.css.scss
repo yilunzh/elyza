@@ -5,6 +5,9 @@ h1, h2 {
 	text-align: center;
 	padding-top: 30px;
 	padding-bottom:50px;
+	&.hello {
+		padding-bottom: 15px
+	}
 }
 
 h2 {
@@ -115,10 +118,6 @@ td {
 
 .hello {
 	text-align: center;
-}
-
-h1, .hello {
-	padding-bottom: 15px;
 }
 
 #about {
