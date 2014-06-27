@@ -28,7 +28,7 @@
                   <%= f.password_field :current_password, autocomplete: "off", placeholder: "Current password to confirm change", class: "form-control" %>
                 </div>
 
-                <div><%= f.submit "Update", class: "btn btn-primary btn-block" %></div>
+                <div><%= f.submit "Update", class: "btn btn-primary btn-block", data: { disable_with: 'Updating...'} %></div>
               <% end %>
 
 
