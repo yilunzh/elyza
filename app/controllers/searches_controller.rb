@@ -61,11 +61,20 @@ class SearchesController < ApplicationController
 
 			name_array = @search.full_name.split(" ")
 			last_name = name_array.pop()
-			first_name = name_array.pop()
+			first_name = name_array.shift
+			if not name_array.empty? 
+				middle_name = name_array.pop()[0]
+			end
+
 			email = format + "@" + @search.domain_name.downcase
 			email = email.gsub("(fn)", first_name.downcase)
 			email = email.gsub("(fnfl)", first_name[0].downcase)
 			email = email.gsub("(ln)", last_name.downcase)
+			if not middle_name.nil?
+				email = email.gsub("(mi)", middle_name.downcase)
+			end
+
+			return email
 		end
 
 		def display_emails(search)
