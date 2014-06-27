@@ -20,7 +20,6 @@ class SearchesController < ApplicationController
 			@emails = display_emails(@search)
 		else
 			redirect_to root_path, alert: "You can only see your own search results"
-
 		end
 
 	end
