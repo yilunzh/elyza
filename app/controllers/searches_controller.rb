@@ -21,7 +21,6 @@ class SearchesController < ApplicationController
 		else
 			redirect_to root_path, alert: "You can only see your own search results"
 		end
-		binding.pry
 	end
 
 	def create

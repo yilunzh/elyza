@@ -5,10 +5,5 @@ class CreateStatuses < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    create_table :searches_statuses, id: false do |t|
-    	t.belongs_to :search
-    	t.belongs_to :status
-    end
   end
 end
