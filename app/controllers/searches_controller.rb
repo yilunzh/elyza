@@ -18,6 +18,7 @@ class SearchesController < ApplicationController
 										  domain_name: @search.domain_name)
 			@domain = Domain.find_by_name(@search.domain_name)
 			@emails = display_emails(@search)
+
 		else
 			redirect_to root_path, alert: "You can only see your own search results"
 		end
@@ -27,6 +28,9 @@ class SearchesController < ApplicationController
 		@search = Search.new(search_params)
 		if current_user
 			@search.user = current_user
+
+			get_search_status
+
 			if @search.save
 				if Domain.find_by_name(search_params[:domain_name])
 					redirect_to search_path(@search)
@@ -50,6 +54,21 @@ class SearchesController < ApplicationController
 	private
 		def search_params
 			params.require(:search).permit(:full_name, :domain_name, :user)
+		end
+
+		def search_status
+			@emails = display_emails(@search)
+			status = Status.find_by_name("invalid")
+			@emails.each do |format, email|
+				if email[1] == 200
+					status = Status.find_by_name("confirmed")
+				elsif email[1] == 207 or email[1] == 215
+					status = Status.find_by_name("possible")
+				end
+			end
+
+			@search.status = status
+			
 		end
 
 		def convert_email_format(format)
