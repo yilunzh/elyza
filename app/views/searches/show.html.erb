@@ -22,28 +22,28 @@
 		<table>
 			<% if @emails.any? %>
 				<% @emails.each do |format, email| %>
-					<tr>
-						<td class="email">
-							<div ><h4><%= email[0] %></h4></div>
-						</td>
-						<td class="confirmation">
-							<% if email[1]/100 == 1 %>
-								<span class="glyphicon glyphicon-exclamation-sign"></span>
-							<% elsif email[1] == 200 %>
-								<span class="glyphicon glyphicon-ok-sign"></span>
-							<% elsif email[1] == 207 or email[1] == 215 %>
-								<span class="glyphicon glyphicon-question-sign"></span>
-							<% elsif email[1]/100 == 4 %>
-								<span class="glyphicon glyphicon-remove-sign"></span>
-							<% else %>
-								<span class="glyphicon glyphicon-ban-circle"></span>
-							<% end %>
+					<% if email[1]/100 == 2 %>
+						<tr>
+							<td class="email">
+								<div ><h4><%= email[0] %></h4></div>
+							</td>
+							<td class="confirmation">
+								<% if email[1]/100 == 1 %>
+									<span class="glyphicon glyphicon-exclamation-sign"></span>
+								<% elsif email[1] == 200 %>
+									<span class="glyphicon glyphicon-ok-sign"></span>
+								<% elsif email[1] == 207 or email[1] == 215 %>
+									<span class="glyphicon glyphicon-question-sign"></span>
+								<% elsif email[1]/100 == 4 %>
+									<span class="glyphicon glyphicon-remove-sign"></span>
+								<% else %>
+									<span class="glyphicon glyphicon-ban-circle"></span>
+								<% end %>
+							</td>
+						</tr>
+					<% end %>	
+				<% end %>
 
-						</td>
-					</tr>
-					<% end %>
-			<% else %>
-				<p>No email format found</p>
 			<% end %>
 		</table>
 	</div>
