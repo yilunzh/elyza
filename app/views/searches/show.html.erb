@@ -20,21 +20,22 @@
 	</div>
 	<div class="col-md-4 col-md-offset-1">
 		<table>
-			<% if @emails.any? %>
-				<% @emails.each do |format, email| %>
+			<% if @search.results.any? %>
+				<% @search.results.each do |email, response| %>
+					<% response = response.to_i %>
 					<% display = false %>
-					<% if email[1]/100 == 2 %>
+					<% if response/100 == 2 %>
 						<tr>
 							<td class="email">
-								<div ><h4><%= email[0] %></h4></div>
+								<div ><h4><%= email %></h4></div>
 							</td>
 							<td class="confirmation">
-								<% if email[1]/100 == 1 %>
+								<% if response/100 == 1 %>
 									<span class="glyphicon glyphicon-exclamation-sign"></span>
-								<% elsif email[1] == 200 %>
+								<% elsif response == 200 %>
 									<% display = true %>
 									<span class="glyphicon glyphicon-ok-sign"></span>
-								<% elsif email[1] == 207 or email[1] == 215 %>
+								<% elsif response == 207 or response == 215 %>
 									<% display = true %>
 									<span class="glyphicon glyphicon-question-sign"></span>
 								<% end %>

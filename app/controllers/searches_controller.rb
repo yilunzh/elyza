@@ -12,13 +12,12 @@ class SearchesController < ApplicationController
 
 	def show
 		@search = Search.find(params[:id])
+		#binding.pry
 		if @search.user == current_user
 			@new_search = Search.new
 			@new_search.assign_attributes(full_name: @search.full_name, 
 										  domain_name: @search.domain_name)
 			@domain = Domain.find_by_name(@search.domain_name)
-			@emails = display_emails(@search)
-
 		else
 			redirect_to root_path, alert: "You can only see your own search results"
 		end
@@ -28,7 +27,7 @@ class SearchesController < ApplicationController
 		@search = Search.new(search_params)
 		if current_user
 			@search.user = current_user
-
+			@search.results = display_emails(@search)
 			get_search_status
 
 			if @search.save
@@ -48,7 +47,7 @@ class SearchesController < ApplicationController
 		else
 			redirect_to new_user_session_path, alert: "You are not logged in."
 		end
-
+		binding.pry
 	end
 
 	private
@@ -56,13 +55,15 @@ class SearchesController < ApplicationController
 			params.require(:search).permit(:full_name, :domain_name, :user)
 		end
 
-		def search_status
-			@emails = display_emails(@search)
+		def get_search_status
+			
 			status = Status.find_by_name("invalid")
-			@emails.each do |format, email|
-				if email[1] == 200
+
+			@search.results.each do |email, response|
+				response = response.to_i
+				if response == 200
 					status = Status.find_by_name("confirmed")
-				elsif email[1] == 207 or email[1] == 215
+				elsif response == 207 or response == 215
 					status = Status.find_by_name("possible")
 				end
 			end
@@ -100,7 +101,7 @@ class SearchesController < ApplicationController
 			EmailFormat.all.each do |email_format|
 				format = email_format.format
 				email =  convert_email_format(format)
-				emails[format] = [email, confirm_email(email)]
+				emails[email] = confirm_email(email)
 				#emails[format] = [email, 114]
 			end
 

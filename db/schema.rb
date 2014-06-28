@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628020408) do
+ActiveRecord::Schema.define(version: 20140628154903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "configurations", force: true do |t|
     t.integer  "score"
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 20140628020408) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status_id"
+    t.hstore   "results"
   end
 
   add_index "searches", ["status_id"], name: "index_searches_on_status_id", using: :btree
