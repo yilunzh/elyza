@@ -22,6 +22,7 @@
 		<table>
 			<% if @emails.any? %>
 				<% @emails.each do |format, email| %>
+					<% display = false %>
 					<% if email[1]/100 == 2 %>
 						<tr>
 							<td class="email">
@@ -31,19 +32,19 @@
 								<% if email[1]/100 == 1 %>
 									<span class="glyphicon glyphicon-exclamation-sign"></span>
 								<% elsif email[1] == 200 %>
+									<% display = true %>
 									<span class="glyphicon glyphicon-ok-sign"></span>
 								<% elsif email[1] == 207 or email[1] == 215 %>
+									<% display = true %>
 									<span class="glyphicon glyphicon-question-sign"></span>
-								<% elsif email[1]/100 == 4 %>
-									<span class="glyphicon glyphicon-remove-sign"></span>
-								<% else %>
-									<span class="glyphicon glyphicon-ban-circle"></span>
 								<% end %>
 							</td>
 						</tr>
 					<% end %>	
 				<% end %>
-
+				<% if display == false %>
+					<p id="no_result">Sorry, no emails found<p>
+				<% end %>
 			<% end %>
 		</table>
 	</div>
@@ -57,18 +58,6 @@
 				<td><span class="glyphicon glyphicon-question-sign"></span></td>
 				<td><strong>Possible</strong></td>
 			</tr>
-			<tr>
-				<td><span class="glyphicon glyphicon-ban-circle"></span></td>
-				<td><strong>Suspect</strong></td>
-			</tr>
-			<tr>
-				<td><span class="glyphicon glyphicon-remove-sign"></span></td>
-				<td><strong>Invalid</strong></td>
-			</tr>
-			<tr>
-				<td><span class="glyphicon glyphicon-exclamation-sign"></span></td>
-				<td><strong>Internal Error</strong></td>
-			</tr>	
 		</table>
 	</div>
 </div>
