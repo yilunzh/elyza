@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
 
 	def show
 		@search = Search.find(params[:id])
-		#binding.pry
+
 		if @search.user == current_user
 			@new_search = Search.new
 			@new_search.assign_attributes(full_name: @search.full_name, 
@@ -47,7 +47,6 @@ class SearchesController < ApplicationController
 		else
 			redirect_to new_user_session_path, alert: "You are not logged in."
 		end
-		binding.pry
 	end
 
 	private

@@ -21,9 +21,9 @@
 	<div class="col-md-4 col-md-offset-1">
 		<table>
 			<% if @search.results.any? %>
+				<% display = false %>
 				<% @search.results.each do |email, response| %>
 					<% response = response.to_i %>
-					<% display = false %>
 					<% if response/100 == 2 %>
 						<tr>
 							<td class="email">
@@ -41,7 +41,7 @@
 								<% end %>
 							</td>
 						</tr>
-					<% end %>	
+					<% end %>
 				<% end %>
 				<% if display == false %>
 					<p id="no_result">Sorry, no emails found<p>
@@ -62,5 +62,3 @@
 		</table>
 	</div>
 </div>
-
-<!-- <img src=<%= image_path 'loading_image.gif' %> class="loader"></img> -->
