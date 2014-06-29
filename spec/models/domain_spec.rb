@@ -1,5 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Domain do
-  pending "add some examples to (or delete) #{__FILE__}"
+	before do
+		@domain = Domain.new(name: "google.com")
+	end
+
+	subject { @domain }
+
+	it { should respond_to(:name) }
 end

@@ -1,5 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe EmailFormat do
-  pending "add some examples to (or delete) #{__FILE__}"
+	before do
+		@email_format = EmailFormat.new(format: "(fn)")
+	end
+
+	subject { @email_format }
+
+	it { should respond_to(:format) } 
 end
