@@ -10,6 +10,7 @@ gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'cucumber'
 end
 
 group :test do
