@@ -11,6 +11,7 @@ gem 'devise'
 group :development, :test do
   gem 'rspec-rails'
   gem 'cucumber'
+  gem 'factory_girl_rails'
 end
 
 group :test do
