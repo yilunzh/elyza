@@ -52,6 +52,8 @@ gem 'spring',        group: :development
 # HTTP and REST client for ruby
 gem 'rest-client'
 
+gem 'newrelic_rpm'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
