@@ -17,5 +17,6 @@ FactoryGirl.define do
 		full_name		"john doe"
 		domain_name		"abcd.com"
 		user
+		
 	end
 end
