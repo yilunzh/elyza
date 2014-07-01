@@ -1,11 +1,14 @@
 require 'rails_helper'
 
 describe User do
-	before do
-		@user = User.new(email: "test@example.com", password: "abcd", password_confirmation: "abcd")
-	end
 
-	subject { @user }
+	# before do
+	# 	@user = User.create(email: "test@example.com", password: "abcd", password_confirmation: "abcd")
+	# end
+
+	let(:user) { FactoryGirl.create(:user) }
+
+	subject { user }
 
 	it { should respond_to(:email) }
 	it { should respond_to(:encrypted_password) }
