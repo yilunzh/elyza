@@ -12,8 +12,7 @@ class SearchesController < ApplicationController
 
 	def show
 		@search = Search.find(params[:id])
-
-		if @search.user == current_user
+		if @search.users.include?(current_user)
 			@new_search = Search.new
 			@new_search.assign_attributes(full_name: @search.full_name, 
 										  domain_name: @search.domain_name)
@@ -24,25 +23,34 @@ class SearchesController < ApplicationController
 	end
 
 	def create
-		@search = Search.new(search_params)
+		
+		@search = Search.where(full_name: params[:search][:full_name].downcase, domain_name: params[:search][:domain_name].downcase).first
+		
 		if current_user
-			@search.user = current_user
-			@search.results = display_emails(@search)
-			get_search_status
+			unless @search.blank?
+				@search.users.append( current_user)
+				redirect_to search_path(@search.id)
+			else
+				@search = Search.new(search_params)
+				binding.pry
+				@search.users.append(current_user)
+				@search.results = display_emails(@search)
+				get_search_status
 
-			if @search.save
-				if Domain.find_by_name(search_params[:domain_name])
-					redirect_to search_path(@search)
-				else
-					@domain = Domain.new(name: search_params[:domain_name])
-					if @domain.save
+				if @search.save
+					if Domain.find_by_name(search_params[:domain_name])
 						redirect_to search_path(@search)
 					else
-						render "new"
+						@domain = Domain.new(name: search_params[:domain_name])
+						if @domain.save
+							redirect_to search_path(@search)
+						else
+							render "new"
+						end
 					end
+				else
+					render "new"
 				end
-			else
-				render "new"
 			end
 		else
 			redirect_to new_user_session_path, alert: "You are not logged in."

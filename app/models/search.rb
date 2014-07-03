@@ -1,5 +1,6 @@
 class Search < ActiveRecord::Base
-	belongs_to :user
+	has_many :requests
+	has_many :users, through: :requests
 	belongs_to :status
 
 	store_accessor :results, :email, :response

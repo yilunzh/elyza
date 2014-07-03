@@ -4,5 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-   has_many :searches
+   has_many :requests
+   has_many :searches, through: :requests
 end

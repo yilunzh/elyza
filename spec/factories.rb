@@ -16,7 +16,6 @@ FactoryGirl.define do
 	factory :search do
 		full_name		"john doe"
 		domain_name		"abcd.com"
-		user
-		
+
 	end
 end

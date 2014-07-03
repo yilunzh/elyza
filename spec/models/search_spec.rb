@@ -7,7 +7,6 @@ describe Search do
 
 	it { should respond_to(:full_name) }
 	it { should respond_to(:domain_name) }
-	it { should respond_to(:user) }
 	it { should respond_to(:status) }
 	it { should respond_to(:results) }
 end
