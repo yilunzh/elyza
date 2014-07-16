@@ -10,10 +10,18 @@
 			<p>Maybe you are a sales person trying to get in touch with the decision maker at a Fortune 500 company. Maybe you are a job seeker looking to reach out to the hiring manager to learn more about your dream job. Maybe you just need to ask someone you don't know for advice. If you are looking to connect with people, ELYZA can help.</p> 
 
 			<h3>How does it work?</h3>
-			<p>Using ELYZA is easy. Simply input your contact's full name and his/her company domain name. ELYZA will search through a list of potential email addresses and return a list of confirmed/possible email addresses. Yes, it's that simple.</p>
+			<p>Using ELYZA is easy. Simply input your contact's full name and his/her company domain name. ELYZA will search through a list of potential email addresses. It then pings their mail server and returns a list of confirmed/possible email addresses. Yes, it's that simple.</p>
+
+			<h3>What is the success rate of a search?</h3>
+			<P>Currently, ELYZA seems to be able to find an email address successfully ~70% of the time. The success rate seem to be higher for smaller companies and lower for larger ones. This is because larger companies typically have more complex email formats and some implement a catch-all address to prevent people from guessing email addresses.</P>
 
 			<h3>How accurate are the results?</h3>
 			<p>If you see a green checkmark next to the email, it's valid. If you see a yellow question mark, it is a possible emai. ELYZA cannot confrirm for sure.</p>
+
+			<h3>What should I do if ELYZA returns a list of possible results</h3>
+			<p>There are cases where the company you are searching for has setup a catchall address. This means that there is no way for ELYZA to verify whether a specific email is valid. In this case, ELYZA returns a list of common email formats that you can try. There is this great tool called <a href="https://rapportive.com/">Rapportive</a> that can help you do that. There's even a video online that tells you how.</p>
+
+			<div class="video"><iframe width="560" height="315" src="//www.youtube.com/embed/bQnO6Yv9SnE" frameborder="0" allowfullscreen></iframe></div>
 
 			<h3>Is it free?</h3>
 			<p>ELYZA is currently free for anyone to use.</p>
@@ -21,7 +29,7 @@
 			<h1 class="hello">About Me</h1>
 			<div class="circular"></div>
 			<h3 class="hello">Hi, I'm Yilun</h3>
-			<p>By day I'm a product manager at a healthcare data startup called <%= link_to "Medivo", "http://www.medivo.com/" %>. By night, I build products that I find interesting and useful.</p>
+			<p>By day I'm a product manager at a healthcare data startup called <%= link_to "Medivo", "http://www.medivo.com/" %>. In my spare time, I also like to build products that I find interesting and useful. This is one of my pet projects. Enjoy!</p>
 
 			<p>Shoot me a note at <%= link_to "yilun@elyza.co", "#" %>, would love to hear your thoughts and feedbacks.</p>
 
