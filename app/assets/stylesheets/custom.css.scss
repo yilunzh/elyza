@@ -105,8 +105,19 @@ td {
 	text-align: center;
 }
 
+/*Home Page*/
+.img_main_banner {
+	text-align: center;
+}
+
+.glyphicon-pencil, .glyphicon-eye-open, .glyphicon-user {
+	font-size: 7em;
+	margin-left: 80px;
+	margin-right: 80px;
+}
+
 /*About Page*/
-.circular {
+#headshot {
 	width: 150px;
 	height: 150px;
 	border-radius: 150px;
