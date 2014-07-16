@@ -111,9 +111,25 @@ td {
 }
 
 .glyphicon-pencil, .glyphicon-eye-open, .glyphicon-user {
-	font-size: 7em;
-	margin-left: 80px;
-	margin-right: 80px;
+	font-size: 10em;
+	margin-left: 150px;
+	margin-right: 150px;
+}
+
+.main_banner_notes {
+	text-align: center;
+	margin-top: 25px;
+}
+
+.left-div {
+	float:left;
+	margin-left: 150px;
+	font-size: 2em;
+}
+
+.right-div {
+	margin-left: 450px;
+	font-size: 2em;
 }
 
 /*About Page*/
