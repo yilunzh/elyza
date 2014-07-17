@@ -40,6 +40,9 @@ h2 {
 	}
 }
 
+button {
+	margin: 5px;
+}
 
 /* search results page */
 
@@ -106,7 +109,7 @@ td {
 }
 
 /*Home Page*/
-.img_main_banner {
+.banner {
 	text-align: center;
 }
 
@@ -116,7 +119,7 @@ td {
 	margin-right: 150px;
 }
 
-.main_banner_notes {
+.main_banner_content {
 	text-align: center;
 	margin-top: 25px;
 }
@@ -130,6 +133,29 @@ td {
 .right-div {
 	margin-left: 450px;
 	font-size: 2em;
+}
+
+.lower_banner {
+	height: 225px;
+	width: 100%;
+	background-color: #003366;
+	margin-top: 50px;
+	vertical-align: middle;
+	text-align: center;
+	position: relative;
+}
+
+.lower_banner_content {
+	width: 50%;
+	height: 50%;
+	overflow: auto;
+	margin: auto;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.call_action {
+	color: white;
 }
 
 /*About Page*/
