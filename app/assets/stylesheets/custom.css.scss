@@ -113,7 +113,7 @@ td {
 	text-align: center;
 }
 
-.glyphicon-pencil, .glyphicon-eye-open, .glyphicon-user {
+.glyphicon-pencil, .glyphicon-search, .glyphicon-user {
 	font-size: 10em;
 	margin-left: 150px;
 	margin-right: 150px;
@@ -126,13 +126,13 @@ td {
 
 .left-div {
 	float:left;
-	margin-left: 150px;
-	font-size: 2em;
+	margin-left: 130px;
+	font-size: 1.5em;
 }
 
 .right-div {
 	margin-left: 450px;
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 .lower_banner {
@@ -156,7 +156,12 @@ td {
 
 .call_action {
 	color: white;
+	&:hover {
+		color: white;
+		text-decoration: none;
+	}
 }
+
 
 /*About Page*/
 #headshot {

@@ -2,20 +2,20 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
 		<div class="banner">
-			<span class="glyphicon glyphicon-eye-open"></span>
+			<span class="glyphicon glyphicon-search"></span>
 			<span class="glyphicon glyphicon-user"></span>
 		</div>
 		<div class="main_banner_content">
-			<div class="left-div"><strong>Simple Search</strong></div>
-			<div class="right-div"><strong>Valid Results</strong></div>
+			<div class="left-div"><strong>Step 1:<br /> Search Person of Interest</strong></div>
+			<div class="right-div"><strong>Step 2: <br /> View Confirmed Emails</strong></div>
 		</div>
 	</div>
 </div>
 
 <div class="lower_banner">
 	<div class="lower_banner_content">
-		<h3 class="call_action">Try us for free. No credit card required</h3>
-		<button type="button" class="btn btn-lg btn-success">Sign up</button>
-		<button type="button" class="btn btn-lg btn-info">Learn More</button>
+		<h3 class="call_action">Yes, it's that simple. Try it for free.</h3>
+		<button type="button" class="btn btn-lg btn-success"><%= link_to 'Sign up', new_user_registration_path, class: "call_action" %></button>
+		<button type="button" class="btn btn-lg btn-info"><%= link_to 'Learn More', about_path, class: "call_action" %></button>
 	</div>
 </div>
