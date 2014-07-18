@@ -27,11 +27,11 @@ class SearchesController < ApplicationController
 		@search = Search.where(full_name: params[:search][:full_name].downcase, domain_name: params[:search][:domain_name].downcase).first
 		
 		if current_user
-			@search.users.append(current_user)
 			unless @search.blank?
 				redirect_to search_path(@search.id)
 			else
 				@search = Search.new(search_params)
+				@search.users.append(current_user)
 				@search.results = display_emails(@search)
 				get_search_status
 
