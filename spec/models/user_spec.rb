@@ -16,4 +16,31 @@ describe User do
 	it { should respond_to(:admin) }
 	it { should respond_to(:confirmation_token) }
 
+	it "is valid with email and password" do
+		user = User.new(email: "tester@example.com", password: "abcdefgh")
+		expect(user).to be_valid
+	end
+	
+	it "is invalid without an email" do
+		user = User.new(email: nil, password: "abcdefgh")
+		expect(user).to be_invalid
+	end
+	
+	it "is invalid without a password" do
+		user = User.new(email: "tester@example.com", password: nil)
+		expect(user).to be_invalid
+	end
+	
+	it "is invalid with a duplicate email" do
+		User.create(email: "tester@example.com", password: "abcdefgh")
+		user = User.new(email: "tester@example.com", password: "abcdefgh")
+		expect(user).to be_invalid		
+	end
+
+	it "is invalid with a password < 8 characters" do
+		user = User.new(email: "tester@example.com", password: "abcd")
+		expect(user).to be_invalid
+	end
+
+
 end
