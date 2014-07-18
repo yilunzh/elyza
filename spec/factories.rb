@@ -10,12 +10,10 @@ FactoryGirl.define do
 	factory :user do
 		email 					"john.doe@abcd.com"
 		password				"password"
-		password_confirmation	"password"
 	end
 
 	factory :search do
 		full_name		"john doe"
 		domain_name		"abcd.com"
-
 	end
 end

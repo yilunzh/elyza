@@ -2,10 +2,6 @@ require 'rails_helper'
 
 describe User do
 
-	# before do
-	# 	@user = User.create(email: "test@example.com", password: "abcd", password_confirmation: "abcd")
-	# end
-
 	let(:user) { FactoryGirl.create(:user) }
 
 	subject { user }
@@ -16,25 +12,26 @@ describe User do
 	it { should respond_to(:admin) }
 	it { should respond_to(:confirmation_token) }
 
+	it "has a valid factory" do
+		expect(FactoryGirl.build(:user)).to be_valid
+	end
+
+
 	it "is valid with email and password" do
-		user = User.new(email: "tester@example.com", password: "abcdefgh")
-		expect(user).to be_valid
+		expect(FactoryGirl.build(:user)).to be_valid
 	end
 	
 	it "is invalid without an email" do
-		user = User.new(email: nil, password: "abcdefgh")
-		expect(user).to be_invalid
+		expect(FactoryGirl.build(:user, email: nil)).to be_invalid
 	end
 	
-	it "is invalid without a password" do
-		user = User.new(email: "tester@example.com", password: nil)
-		expect(user).to be_invalid
+	it "is invalid without a password" do 
+		expect(FactoryGirl.build(:user, password: nil)).to be_invalid
 	end
 	
 	it "is invalid with a duplicate email" do
-		User.create(email: "tester@example.com", password: "abcdefgh")
-		user = User.new(email: "tester@example.com", password: "abcdefgh")
-		expect(user).to be_invalid		
+		User.create(email: "john.doe@abcd.com", password: "password")
+		expect(FactoryGirl.build(:user)).to be_invalid		
 	end
 
 	it "is invalid with a password < 8 characters" do
