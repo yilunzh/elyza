@@ -8,12 +8,16 @@ FactoryGirl.define do
 	end
 	
 	factory :user do
-		email 					"john.doe@abcd.com"
-		password				"password"
+		email 			{ Faker::Internet.email }
+		password		"password"
 	end
 
 	factory :search do
 		full_name		"john doe"
 		domain_name		"abcd.com"
+
+		after(:build) do |search|
+			search.users << FactoryGirl.create(:user)
+		end
 	end
 end

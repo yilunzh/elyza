@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pry'
 
 describe User do
 
@@ -11,11 +12,6 @@ describe User do
 	it { should respond_to(:reset_password_token)}
 	it { should respond_to(:admin) }
 	it { should respond_to(:confirmation_token) }
-
-	it "has a valid factory" do
-		expect(FactoryGirl.build(:user)).to be_valid
-	end
-
 
 	it "is valid with email and password" do
 		expect(FactoryGirl.build(:user)).to be_valid
@@ -30,14 +26,13 @@ describe User do
 	end
 	
 	it "is invalid with a duplicate email" do
-		User.create(email: "john.doe@abcd.com", password: "password")
-		expect(FactoryGirl.build(:user)).to be_invalid		
+		User.create(email: "john.doe@example.com", password: "password")
+		expect(User.create(email: "john.doe@example.com", password: "password")).to be_invalid		
 	end
 
 	it "is invalid with a password < 8 characters" do
 		user = User.new(email: "tester@example.com", password: "abcd")
 		expect(user).to be_invalid
 	end
-
 
 end
