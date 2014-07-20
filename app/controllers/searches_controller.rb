@@ -35,6 +35,8 @@ class SearchesController < ApplicationController
 				@search.results = display_emails(@search)
 				get_search_status
 
+				#binding.pry
+
 				if @search.save
 					if Domain.find_by_name(search_params[:domain_name])
 						redirect_to search_path(@search)
@@ -115,6 +117,7 @@ class SearchesController < ApplicationController
 				emails[email] = confirm_email(email)
 				#emails[format] = [email, 114]
 			end
+			
 
 			return emails
 
