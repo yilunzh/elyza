@@ -1,11 +1,17 @@
 require 'rails_helper'
 
 describe Status do
-	before do
-		@status = Status.new(name: "probable")
+	it "is valid with status" do
+		expect(FactoryGirl.build(:status)).to be_valid
 	end
 
-	subject { @status }
+	it "is invalid with a blank name" do
+		expect(FactoryGirl.build(:status, name: nil)).to be_invalid
+	end
 
-	it { should respond_to(:name) }
+	it "is invalid with a duplicate status" do
+		FactoryGirl.create(:status)
+		expect(FactoryGirl.build(:status)).to be_invalid
+	end
+
 end

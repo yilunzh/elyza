@@ -20,4 +20,15 @@ FactoryGirl.define do
 			search.users << FactoryGirl.create(:user)
 		end
 	end
+
+    factory :request do
+    	after(:build) do |request|
+    		request.user = FactoryGirl.create(:user)
+    		request.search = FactoryGirl.create(:search)
+    	end
+  	end
+
+  	factory :status do
+  		name 			'confirmed'
+  	end
 end

@@ -4,5 +4,5 @@ class Status < ActiveRecord::Base
 
 	STATUSES = ['confirmed', 'possible', 'suspect', 'invalid', 'internal error']
 
-	validates :name, inclusion: { in: STATUSES }
+	validates :name, presence: true, uniqueness: { case_sensitive: false }, inclusion: { in: STATUSES }
 end
