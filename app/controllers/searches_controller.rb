@@ -25,9 +25,9 @@ class SearchesController < ApplicationController
 	def create
 		
 		@search = Search.where(full_name: params[:search][:full_name].downcase, domain_name: params[:search][:domain_name].downcase).first
-		
 		if current_user
 			unless @search.blank?
+				@search.users.append(current_user)
 				redirect_to search_path(@search.id)
 			else
 				@search = Search.new(search_params)
