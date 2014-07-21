@@ -35,8 +35,6 @@ class SearchesController < ApplicationController
 				@search.results = display_emails(@search)
 				get_search_status
 
-				#binding.pry
-
 				if @search.save
 					if Domain.find_by_name(search_params[:domain_name])
 						redirect_to search_path(@search)
@@ -79,6 +77,22 @@ class SearchesController < ApplicationController
 			
 		end
 
+
+		def display_emails(search)
+
+			emails = {}
+			EmailFormat.all.each do |email_format|
+				format = email_format.format
+				email =  convert_email_format(format)
+				emails[email] = confirm_email(email)
+				#emails[format] = [email, 114]
+			end
+			
+
+			return emails
+
+		end
+
 		def convert_email_format(format)
 			if @search.domain_name.include?("www.")
 				@search.domain_name.slice!("www.")
@@ -106,21 +120,6 @@ class SearchesController < ApplicationController
 			end
 
 			return email
-		end
-
-		def display_emails(search)
-
-			emails = {}
-			EmailFormat.all.each do |email_format|
-				format = email_format.format
-				email =  convert_email_format(format)
-				emails[email] = confirm_email(email)
-				#emails[format] = [email, 114]
-			end
-			
-
-			return emails
-
 		end
 
 		def confirm_email(email)
