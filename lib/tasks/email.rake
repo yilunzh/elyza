@@ -12,6 +12,8 @@ namespace :email do
 						
 					status = response["status"].to_s
 					
+					#issue with rails 4.1 and hstore bug, need to wait for rails 4.2 
+					#http://stackoverflow.com/questions/20251296/how-can-i-update-a-data-records-value-with-ruby-on-rails-4-0-1-postgresql-hstor
 					if search.results[email] != status
 						search.results[email] = status
 						search.save!
