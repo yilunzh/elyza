@@ -1,4 +1,5 @@
 class Search < ActiveRecord::Base
+
 	has_many :requests
 	has_many :users, through: :requests
 	belongs_to :status
@@ -17,5 +18,4 @@ class Search < ActiveRecord::Base
 			errors.add(:search_id, "has already been saved in this search term combination")
 		end
 	end
-
 end
