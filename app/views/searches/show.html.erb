@@ -1,5 +1,14 @@
 <h1>Search Result</h1>
 
+<div id="pop1" class="popbox">
+    <h2>Confirmed</h2>
+    <p>The mail address is valid</p>
+</div>
+<div id="pop2" class="popbox">
+    <h2>Possible</h2>
+    <p>The mail server for this domain accepts the address, but it also implements a catch-all policy. For this reason, it is not possible to determine if a mail account with this name actually exists, without sending a message and waiting for a reply.</p>
+</div>
+
 <div class="row">
 	<div class="col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1">
 		<div class="search_form">
@@ -31,13 +40,17 @@
 							</td>
 							<td class="confirmation">
 								<% if response/100 == 1 %>
-									<span class="glyphicon glyphicon-exclamation-sign"></span>
+										<span class="glyphicon glyphicon-exclamation-sign"></span>
 								<% elsif response == 200 %>
 									<% display = true %>
-									<span class="glyphicon glyphicon-ok-sign"></span>
+									<a href="#" class="popper" data-popbox="pop1">
+										<span class="glyphicon glyphicon-ok-sign"></span>
+									</a>
 								<% elsif response == 207 or response == 215 %>
 									<% display = true %>
-									<span class="glyphicon glyphicon-question-sign"></span>
+									<a href="#" class="popper" data-popbox="pop2">
+										<span class="glyphicon glyphicon-question-sign"></span>
+									</a>
 								<% end %>
 							</td>
 						</tr>
