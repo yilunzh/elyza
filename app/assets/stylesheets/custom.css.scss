@@ -80,6 +80,10 @@ table, th, td {
 	font-size: 1.8em;
 }
 
+tr { 
+	height: 50px;
+}
+
 td {
 	vertical-align: middle;
 	padding: 15px;
@@ -100,6 +104,39 @@ td {
 #no_result {
 	text-align: center;
 	font-size: 1.5em;
+}
+
+.popbox {
+    display: none;
+    position: absolute;
+    z-index: 99999;
+    width: 400px;
+    padding: 10px;
+    background: #EEEFEB;
+    color: #000000;
+    border: 1px solid #4D4F53;
+    margin: 0px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+    box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+}
+.popbox h2
+{
+    color:  white;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    margin: -10px 0px 8px -10px;
+    padding: 5px 10px;
+}
+
+#pop1 h2
+{ 
+		background-color: green;
+}
+
+#pop2 h2
+{
+		background-color: orange;
 }
 
 /* Sign in page */
@@ -187,4 +224,6 @@ td {
 	text-align: center;
 	margin: 20px;
 }
+
+
 
