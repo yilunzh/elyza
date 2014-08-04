@@ -223,6 +223,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   selenium-webdriver
   spring
+  sprockets
   turbolinks
   uglifier (>= 1.3.0)
   whenever
