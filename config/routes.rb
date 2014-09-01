@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  authenticated do
-    root :to => 'searches#new', as: :authenticated
-  end
+  # authenticated do
+  #   root :to => 'searches#new', as: :authenticated
+  # end
 
-  root 'static_pages#home'
+  root 'searches#new'
 
   match '/home', to: 'static_pages#home', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
