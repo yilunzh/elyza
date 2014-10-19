@@ -4,7 +4,7 @@ require 'json'
 
 class SearchesController < ApplicationController
 
-	before_filter :authenticate_user!, except: [:new]
+	# before_filter :authenticate_user!, except: [:new]
 
 	def new
 		@search = Search.new
@@ -12,26 +12,28 @@ class SearchesController < ApplicationController
 
 	def show
 		@search = Search.find(params[:id])
-		if @search.users.include?(current_user)
+		# if @search.users.include?(current_user)
 			@new_search = Search.new
 			@new_search.assign_attributes(full_name: @search.full_name, 
 										  domain_name: @search.domain_name)
 			@domain = Domain.find_by_name(@search.domain_name)
-		else
-			redirect_to root_path, alert: "You can only see your own search results"
-		end
+		# else
+		# 	redirect_to root_path, alert: "You can only see your own search results"
+		# end
 	end
 
 	def create
 		
 		@search = Search.where(full_name: params[:search][:full_name].downcase, domain_name: params[:search][:domain_name].downcase).first
-		if current_user
-			unless @search.blank?
-				@search.users.append(current_user)
+		# if current_user
+		
+			if @search.blank? == false
+
+				# @search.users.append(current_user)
 				redirect_to search_path(@search.id)
 			else
 				@search = Search.new(search_params)
-				@search.users.append(current_user)
+				# @search.users.append(current_user)
 				@search.results = display_emails(@search)
 				get_search_status
 
@@ -50,9 +52,9 @@ class SearchesController < ApplicationController
 					render "new"
 				end
 			end
-		else
-			redirect_to new_user_session_path, alert: "You are not logged in."
-		end
+		# else
+		# 	redirect_to new_user_session_path, alert: "You are not logged in."
+		# end
 	end
 
 	private
